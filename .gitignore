@@ -1,0 +1,22 @@
+# ignore ALL files in ANY directory named android
+**/android
+*/android
+
+# ignore ALL .cfg Export Preset files
+*.cfg
+
+#**/source_code/export_presets.cfg
+
+*.cfg
+
+
+
+*/source_code/android/
+**/source_code/.imports/
+**/source_code/.godot/
+
+# All Import files
+*.md5
+*.stex
+*.import
+*.ctex
