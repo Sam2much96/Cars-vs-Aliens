@@ -1,12 +1,14 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Dodge_Charger.tscn" type="PackedScene" id=1]
+[ext_resource path="res://resources/arrow.png" type="Texture" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 
 [sub_resource type="SpatialMaterial" id=5]
 flags_world_triplanar = true
 albedo_texture = ExtResource( 3 )
 uv1_triplanar = true
+uv1_triplanar_sharpness = 1.0
 
 [sub_resource type="CubeMesh" id=3]
 material = SubResource( 5 )
@@ -85,3 +87,37 @@ mesh = SubResource( 12 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Building/StaticBody"]
 shape = SubResource( 13 )
+
+[node name="hud" type="CanvasLayer" parent="."]
+
+[node name="Node2D" type="Node2D" parent="hud"]
+
+[node name="left" type="TouchScreenButton" parent="hud/Node2D"]
+position = Vector2( 156, 373 )
+normal = ExtResource( 2 )
+action = "right"
+visibility_mode = 1
+
+[node name="right" type="TouchScreenButton" parent="hud/Node2D"]
+position = Vector2( 130, 454 )
+rotation = 3.13123
+scale = Vector2( 1, 1 )
+normal = ExtResource( 2 )
+action = "left"
+visibility_mode = 1
+
+[node name="up" type="TouchScreenButton" parent="hud/Node2D"]
+position = Vector2( 101, 391 )
+rotation = -1.5523
+scale = Vector2( 1, 1 )
+normal = ExtResource( 2 )
+action = "up"
+visibility_mode = 1
+
+[node name="down" type="TouchScreenButton" parent="hud/Node2D"]
+position = Vector2( 184, 430 )
+rotation = 1.59
+scale = Vector2( 1, 1 )
+normal = ExtResource( 2 )
+action = "down"
+visibility_mode = 1
