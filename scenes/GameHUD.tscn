@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/GameHUD.gd" type="Script" id=1]
+[ext_resource path="res://themes/gta_style_theme.theme" type="Theme" id=2]
+[ext_resource path="res://resources/admob-lib/admob.gd" type="Script" id=3]
+[ext_resource path="res://scripts/GameHUDv2.gd" type="Script" id=4]
+
+[node name="GameHUD" type="CanvasLayer"]
+script = ExtResource( 4 )
+
+[node name="GameHUD" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -148.0
+margin_top = 24.0
+margin_right = -12.0
+margin_bottom = 104.0
+alignment = 1
+
+[node name="time" type="Label" parent="VBoxContainer"]
+margin_right = 136.0
+margin_bottom = 38.0
+theme = ExtResource( 2 )
+custom_colors/font_color = Color( 0.960784, 0.94902, 0.196078, 1 )
+text = "09:08"
+
+[node name="cash2" type="Label" parent="VBoxContainer"]
+margin_top = 42.0
+margin_right = 136.0
+margin_bottom = 80.0
+theme = ExtResource( 2 )
+text = "$10000000"
+
+[node name="health" type="Label" parent="VBoxContainer"]
+margin_top = 84.0
+margin_right = 136.0
+margin_bottom = 122.0
+theme = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "100"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
+margin_right = 997.0
+margin_bottom = 615.0
+
+[node name="DialogPopup" type="Popup" parent="."]
+visible = true
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="DialogPopup"]
+margin_left = -12.0
+margin_right = 1044.0
+margin_bottom = 642.0
+color = Color( 0, 0, 0, 0.376471 )
+
+[node name="Label" type="Label" parent="DialogPopup"]
+margin_left = 467.0
+margin_top = 166.0
+margin_right = 570.0
+margin_bottom = 286.0
+theme = ExtResource( 2 )
+custom_colors/font_color = Color( 0.709804, 0.705882, 0.345098, 1 )
+text = "cars vs
+Angels"
+align = 1
+
+[node name="MiniMap" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="AdMob" type="Node" parent="."]
+script = ExtResource( 3 )
+is_real = true
+banner_id = "ca-app-pub-3900377589557710/1962035429"

@@ -15,3 +15,6 @@
 *.stex
 *.import
 *.ctex
+*.material
+*.glb
+*.gltf
