@@ -4,11 +4,15 @@
 
 [node name="Music" type="Node"]
 script = ExtResource( 1 )
+Enabled = true
 
 [node name="A" type="AudioStreamPlayer" parent="."]
+mix_target = 2
 
 [node name="B" type="AudioStreamPlayer" parent="."]
 
 [node name="C" type="AudioStreamPlayer" parent="."]
 
 [node name="D" type="AudioStreamPlayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -42,13 +42,22 @@ export (int) var max_torque : int = 200
 
 enum {MOVE_FORWARD, REVERSE, STEER_LEFT, STEER_RIGHT}
 
+# get shallow pointers to all core classes .eg. music 
+onready var safe_Music = get_node("/root/WorldEnvironment/Music")
+
 
 func _ready():
 	
 	# make pointer to game manager singleton
 	# temporarily depreciated for refactor Aug 25
 	#GameManager.car_object = self
-	pass
+	
+	# debug pointer to music node
+	if !safe_Music:
+		
+		push_warning("Music debug :" + safe_Music)
+	
+	#pass
 
 # im separating the input event from the 
 #func _input(event):
@@ -83,6 +92,7 @@ func _physics_process(delta):
 	# calculation to add some mechanical drag
 	$backwheel2.engine_force = acceleration * max_torque * (1 - rpm / max_rpm)
 	
+	safe_Music.carAccelerate() # play the acceleration sfx
 	
 	#//moves the car forward
 	#transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);   

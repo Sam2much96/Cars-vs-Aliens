@@ -1,5 +1,5 @@
 # *************************************************
-# godot3-Cars-vs-Aliens-game by INhumanity_arts
+# godot3-Cars-vs-Angels-game by INhumanity_arts
 # Released under MIT License
 # *************************************************
 # Features:
@@ -8,14 +8,11 @@
 # (3) Players stats using GTA Miami vice style font
 # (4) Input handler
 # *************************************************
-# To Do:
-# (1) Titlescreen UI
-# (2) Better Touch input Event Controller 
+# 
 # 
 # 
 # *************************************************
 
- #"Depreciated touch screen controller Aug 25,2025"
 
 extends Control
 
