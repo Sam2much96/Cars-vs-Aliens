@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scripts/Music.gd" type="Script" id=1]
+[ext_resource path="res://music/sfx/car-acceleration-inside-car.ogg" type="AudioStream" id=2]
 
 [node name="Music" type="Node"]
 script = ExtResource( 1 )
@@ -12,6 +13,7 @@ mix_target = 2
 [node name="B" type="AudioStreamPlayer" parent="."]
 
 [node name="C" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
 
 [node name="D" type="AudioStreamPlayer" parent="."]
 

@@ -1,4 +1,6 @@
-[gd_scene load_steps=579 format=2]
+[gd_scene load_steps=580 format=2]
+
+[ext_resource path="res://scripts/citymap.gd" type="Script" id=1]
 
 [sub_resource type="PlaneMesh" id=567]
 size = Vector2( 2000, 2000 )
@@ -9333,6 +9335,7 @@ surfaces/0 = {
 }
 
 [node name="citymap" type="Spatial"]
+script = ExtResource( 1 )
 
 [node name="ground_level" type="MeshInstance" parent="."]
 transform = Transform( 0.99789, 0, 0, 0, 0.99789, 0, 0, 0, 0.99789, 66.4211, 19.2775, -112.497 )
@@ -9472,6 +9475,7 @@ mesh = SubResource( 43 )
 
 [node name="element012" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 258.1, 0, -319.598 )
+visible = false
 mesh = SubResource( 44 )
 
 [node name="element015" type="MeshInstance" parent="."]

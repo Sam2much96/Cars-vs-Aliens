@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://scripts/car.gd" type="Script" id=1]
 [ext_resource path="res://Material.material" type="Material" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Material_003.material" type="Material" id=10]
 [ext_resource path="res://Material_005.material" type="Material" id=11]
 [ext_resource path="res://models/Material_001.material" type="Material" id=12]
+[ext_resource path="res://scripts/GameMonetize.gd" type="Script" id=13]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Dodge_Charger_Plano004"
@@ -365,106 +366,104 @@ surfaces/1 = {
 "vertex_count": 1997
 }
 
-[node name="Dodge_Charger" type="Spatial"]
-
-[node name="VehicleBody" type="VehicleBody" parent="."]
+[node name="VehicleBody" type="VehicleBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.40323e-06, 0.0626473, -0.00821495 )
 script = ExtResource( 1 )
 
-[node name="Camera" type="Camera" parent="VehicleBody"]
+[node name="Camera" type="Camera" parent="."]
 transform = Transform( -0.999994, 0, 0.00357785, 0, 1, 0, -0.00357785, 0, -0.999994, -6.32099e-11, 2.99166, -7.17654 )
 current = true
 
-[node name="Carroceria" type="Spatial" parent="VehicleBody"]
+[node name="Carroceria" type="Spatial" parent="."]
 
-[node name="Carroceria001" type="MeshInstance" parent="VehicleBody/Carroceria"]
+[node name="Carroceria001" type="MeshInstance" parent="Carroceria"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.613466, 0, 0.985222, 0.0135174 )
 mesh = SubResource( 1 )
 
-[node name="Círculo Bézier002" type="Spatial" parent="VehicleBody/Carroceria/Carroceria001"]
+[node name="Círculo Bézier002" type="Spatial" parent="Carroceria/Carroceria001"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.63008, 1.31676, 0.314035, -6.82728 )
 
-[node name="Vidris" type="MeshInstance" parent="VehicleBody/Carroceria/Carroceria001"]
+[node name="Vidris" type="MeshInstance" parent="Carroceria/Carroceria001"]
 transform = Transform( 1.20251, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.540404, 1.76815 )
 mesh = SubResource( 2 )
 
-[node name="Vidris002" type="MeshInstance" parent="VehicleBody/Carroceria/Carroceria001"]
+[node name="Vidris002" type="MeshInstance" parent="Carroceria/Carroceria001"]
 transform = Transform( 1.23109, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.551849, -3.51617 )
 mesh = SubResource( 3 )
 material/0 = SubResource( 17 )
 
-[node name="Vidris003" type="MeshInstance" parent="VehicleBody/Carroceria/Carroceria001"]
+[node name="Vidris003" type="MeshInstance" parent="Carroceria/Carroceria001"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.24737, 0.533268, -1.73907 )
 mesh = SubResource( 4 )
 
-[node name="Vidris005" type="MeshInstance" parent="VehicleBody/Carroceria/Carroceria001"]
+[node name="Vidris005" type="MeshInstance" parent="Carroceria/Carroceria001"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24737, 0.533268, -1.73907 )
 mesh = SubResource( 5 )
 
-[node name="Capo" type="Spatial" parent="VehicleBody/Carroceria"]
+[node name="Capo" type="Spatial" parent="Carroceria"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08438, 1.52613 )
 
-[node name="Capo001" type="MeshInstance" parent="VehicleBody/Carroceria/Capo"]
+[node name="Capo001" type="MeshInstance" parent="Carroceria/Capo"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.613466, 0, 0.0304333, 1.36364 )
 mesh = SubResource( 6 )
 material/0 = ExtResource( 12 )
 
-[node name="Puerta I" type="Spatial" parent="VehicleBody/Carroceria"]
+[node name="Puerta I" type="Spatial" parent="Carroceria"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53258, 0.777878, 1.68744 )
 
-[node name="Puertas000" type="MeshInstance" parent="VehicleBody/Carroceria/Puerta I"]
+[node name="Puertas000" type="MeshInstance" parent="Carroceria/Puerta I"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.613466, 0.164895, 0.00762642, -0.0310403 )
 mesh = SubResource( 7 )
 material/0 = ExtResource( 2 )
 
-[node name="Vidris004" type="MeshInstance" parent="VehicleBody/Carroceria/Puerta I/Puertas000"]
+[node name="Vidris004" type="MeshInstance" parent="Carroceria/Puerta I/Puertas000"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.426494, 0.726917, -2.25357 )
 mesh = SubResource( 8 )
 
-[node name="Puerta_D" type="Spatial" parent="VehicleBody/Carroceria"]
+[node name="Puerta_D" type="Spatial" parent="Carroceria"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.53258, 0.777878, 1.68744 )
 
-[node name="Puertas001" type="MeshInstance" parent="VehicleBody/Carroceria/Puerta_D"]
+[node name="Puertas001" type="MeshInstance" parent="Carroceria/Puerta_D"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.613466, -0.164891, 0.00762642, -0.0310402 )
 mesh = SubResource( 9 )
 
-[node name="Vidris001" type="MeshInstance" parent="VehicleBody/Carroceria/Puerta_D/Puertas001"]
+[node name="Vidris001" type="MeshInstance" parent="Carroceria/Puerta_D/Puertas001"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.426494, 0.726918, -2.25357 )
 mesh = SubResource( 10 )
 
-[node name="CollisionShape" type="CollisionShape" parent="VehicleBody"]
+[node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1.68961, 0, 0, 0, 0.28258, 0, 0, 0, 1.13989, 0, 0.960086, 0 )
 shape = SubResource( 11 )
 
-[node name="frontwheel1" type="VehicleWheel" parent="VehicleBody"]
+[node name="frontwheel1" type="VehicleWheel" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50397, 0.237173, 2.70462 )
 use_as_steering = true
 suspension_stiffness = 50.0
 damping_compression = 1.9
 damping_relaxation = 2.0
 
-[node name="Rueda_A_I" type="Spatial" parent="VehicleBody/frontwheel1"]
+[node name="Rueda_A_I" type="Spatial" parent="frontwheel1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0497912, 0.0814359, -0.0326276 )
 
-[node name="Círculo000" type="MeshInstance" parent="VehicleBody/frontwheel1/Rueda_A_I"]
+[node name="Círculo000" type="MeshInstance" parent="frontwheel1/Rueda_A_I"]
 transform = Transform( -3.64333e-07, 1.63624, -1.093e-06, 3.64333e-07, -1.17033e-06, -1.52812, -1.52812, -3.9011e-07, -3.64333e-07, -0.000942469, -0.00104386, -0.000378609 )
 mesh = SubResource( 12 )
 
-[node name="frontwheel2" type="VehicleWheel" parent="VehicleBody"]
+[node name="frontwheel2" type="VehicleWheel" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.52304, 0.237173, 2.70462 )
 use_as_steering = true
 suspension_stiffness = 50.0
 damping_compression = 1.9
 damping_relaxation = 2.0
 
-[node name="Rueda_A_D" type="Spatial" parent="VehicleBody/frontwheel2"]
+[node name="Rueda_A_D" type="Spatial" parent="frontwheel2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0688703, 0.0814359, -0.0326276 )
 
-[node name="Círculo001" type="MeshInstance" parent="VehicleBody/frontwheel2/Rueda_A_D"]
+[node name="Círculo001" type="MeshInstance" parent="frontwheel2/Rueda_A_D"]
 transform = Transform( -1.093e-06, 1.63624, -4.55416e-07, 9.10832e-08, -5.85165e-07, -1.52812, -1.52812, -1.0728e-06, -1.82166e-07, 0.000945568, -0.00104403, -0.000378847 )
 mesh = SubResource( 15 )
 
-[node name="backwheel2" type="VehicleWheel" parent="VehicleBody"]
+[node name="backwheel2" type="VehicleWheel" parent="."]
 unique_name_in_owner = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.52304, 0.237173, -2.06082 )
 use_as_traction = true
@@ -472,25 +471,34 @@ suspension_stiffness = 50.0
 damping_compression = 1.9
 damping_relaxation = 2.0
 
-[node name="Rueda_TD" type="Spatial" parent="VehicleBody/backwheel2"]
+[node name="Rueda_TD" type="Spatial" parent="backwheel2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0550911, 0.0425826, -0.0616822 )
 
-[node name="Círculo003" type="MeshInstance" parent="VehicleBody/backwheel2/Rueda_TD"]
+[node name="Círculo003" type="MeshInstance" parent="backwheel2/Rueda_TD"]
 transform = Transform( -1.82166e-07, 1.63624, -2.27708e-07, 4.55416e-08, -1.95055e-07, -1.52812, -1.52812, -2.43819e-07, 0, 0.124907, -0.00104398, 0.00070858 )
 mesh = SubResource( 14 )
 
-[node name="backwheel1" type="VehicleWheel" parent="VehicleBody"]
+[node name="backwheel1" type="VehicleWheel" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55805, 0.237173, -2.06082 )
 use_as_traction = true
 suspension_stiffness = 50.0
 damping_compression = 1.9
 damping_relaxation = 2.0
 
-[node name="Rueda_T_I" type="Spatial" parent="VehicleBody/backwheel1"]
+[node name="Rueda_T_I" type="Spatial" parent="backwheel1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020092, 0.0425826, -0.0616822 )
 
-[node name="Círculo011" type="MeshInstance" parent="VehicleBody/backwheel1/Rueda_T_I"]
+[node name="Círculo011" type="MeshInstance" parent="backwheel1/Rueda_T_I"]
 transform = Transform( -1.82166e-07, 1.63624, -2.27708e-07, 4.55416e-08, -1.95055e-07, -1.52812, -1.52812, -2.43819e-07, 0, -0.124907, -0.00104392, 0.00070858 )
 mesh = SubResource( 13 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.40323e-06, -0.0626473, 0.00821495 )
+
+[node name="game monetize" type="Node" parent="."]
+script = ExtResource( 13 )
+
+[connection signal="body_entered" from="." to="." method="_on_VehicleBody_body_entered"]

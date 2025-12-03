@@ -43,8 +43,7 @@ RECORD, REVERB, SPECTRUM_ANALYSER, STERIO_ENCHANCE
 
 export (Dictionary) var default_playlist = {
 	0: "res://music/songs/beaach sex chike san.ogg",
-	1:"res://music/songs/Moya.ogg",
-	2:"res://music/songs/Seabase X - No Waves.ogg"
+	1:"res://music/songs/Seabase X - No Waves.ogg"
 
 }
 export (Dictionary) var carSfx = {0: "res://music/sfx/car-acceleration-inside-car.ogg"}
@@ -85,12 +84,12 @@ func _ready():
 		A.stop()
 	pass
 
-func carAccelerate():
-	#C.play(load(carSfx[0]));
-	
-	#C.stream = load(carSfx[0])
-	#C.play()
-	pass
+func carAudioplay():
+	#print_debug("playing car acelerate audio")
+	C.play()
+
+func carAudiopause():
+	C.stream_paused = true
 
 
 """
@@ -160,8 +159,8 @@ func play_sfx(list : Dictionary): #a separate bus channel for sfx using dictiona
 		C.stream = load(sfx)
 		C.play()
 		#print_debug ('playing sfx: ',sfx.get_file()) #works
-		yield(get_tree().create_timer(0.8), "timeout")
-		C.stop()
+		#yield(get_tree().create_timer(28), "timeout")
+		#C.stop()
 
 func play_track(_track : String): 
 	#for playing single sample tracks

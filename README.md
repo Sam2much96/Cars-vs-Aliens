@@ -16,3 +16,9 @@ Cars Vs Aliens, a Mobile Game Made In Godot Engine, Ported From Unity
 
 # Site and Ads
 (1) https://www.carsvsangels.site/app-ads.txt
+
+# Credits
+(1) "Human Base Mesh Male" (https://skfb.ly/osL8Z) by WillHenniker94 is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+(2) Mapbox
+(3)

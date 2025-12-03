@@ -14,7 +14,11 @@
 # (1) Export all core functions signals and external functions for UI linking
 # (2) Implement player rpg 3d character that can enter and exit the car object
 # (3) Add advanced screen class
-# (4) 
+# (4) improve pc controls
+# (5) implement player object that can enter and exit the car (1/2)
+# (6) implement car moving sfx from music singleton
+# (7) implement impact animation and physics
+# (8) export acceleration and physics data to the music singleton
 # *************************************************
 
 
@@ -40,28 +44,35 @@ export (int) var max_rpm : int = 500
 export (int) var max_torque : int = 200  
 
 
-enum {MOVE_FORWARD, REVERSE, STEER_LEFT, STEER_RIGHT}
+#enum {MOVE_FORWARD, REVERSE, STEER_LEFT, STEER_RIGHT}
+
+# state machine for the vehicle body object
+enum {DRIVING, IDLE}
+
+var state = DRIVING
 
 # get shallow pointers to all core classes .eg. music 
-onready var safe_Music = get_node("/root/WorldEnvironment/Music")
+#onready var safe_Music = get_node("/root/WorldEnvironment/Music")
 
+
+# car object pointers 
+onready var backwheel1 : VehicleWheel =$backwheel1
+onready var backwheel2 : VehicleWheel = $backwheel2
+
+# car audio 3d
+onready var carAudio : AudioStreamPlayer3D = $AudioStreamPlayer3D # buggy
+
+# car camera
+onready var carCamera : Camera = $Camera
+
+# car navigation
+var acceleration : int
+#var steering : float
 
 func _ready():
 	
-	# make pointer to game manager singleton
-	# temporarily depreciated for refactor Aug 25
-	#GameManager.car_object = self
 	
-	# debug pointer to music node
-	if !safe_Music:
-		
-		push_warning("Music debug :" + safe_Music)
-	
-	#pass
-
-# im separating the input event from the 
-#func _input(event):
-#	pass
+	pass
 
 
 
@@ -70,50 +81,55 @@ func _ready():
 
 func _physics_process(delta):
 	
-	# Left and Right Steering
-	# Converts Left and Right Input map to an integer which is ued to control car movements
-	steering = lerp(steering, Input.get_axis("right","left") * 0.4, 5 * delta)
-	
-	#print_debug(steering)
-	
-	# Forword and Backwards Acceleration
-	var acceleration = Input.get_axis("down","up") # multiply by random force value link a 100
-	
-	#print_debug("acceleration: ",acceleration)
-	
-	var rpm = $backwheel1.get_rpm()
-	
-	# calculation to add some mechanical drag
-	$backwheel1.engine_force = acceleration * max_torque * (1 - rpm / max_rpm)
-	
-	rpm = $backwheel2.get_rpm()
+	# to do:
+	# (1) connect vehicle  body activation with player 3d character
+	# (2) separate car into 3 states, driving, parked and ai state with 3d navigation mesh for them
+	# (3) create area 3d interraction for the player character nodes
+	# (4) set a pointer to trigger once the player is detected in the area of the vehicle body 3d
 	
 	
-	# calculation to add some mechanical drag
-	$backwheel2.engine_force = acceleration * max_torque * (1 - rpm / max_rpm)
-	
-	safe_Music.carAccelerate() # play the acceleration sfx
-	
-	#//moves the car forward
-	#transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);   
-	 
-	#//moves the car sideways
-	#transform.Rotate(Vector3.up, turnSpeed * horizontalInput * Time.deltaTime );
-	
-	#pass
+	match state:
+		DRIVING:
+			# make the car camera the current render
+			carCamera.current = true
+			# Left and Right Steering
+			# Converts Left and Right Input map to an integer which is ued to control car movements
+			steering = lerp(steering, Input.get_axis("right","left") * 0.4, 5 * delta)
+			
+			#print_debug("steering debug: ",steering)
+			
+			# Forword and Backwards Acceleration
+			acceleration = Input.get_axis("down","up") # multiply by random force value link a 100
+			
+			
+			
+			var rpm = backwheel1.get_rpm()
+			
+			# calculation to add some mechanical drag
+			backwheel1.engine_force = acceleration * max_torque * (1 - rpm / max_rpm)
+			
+			rpm = backwheel2.get_rpm()
+			
+			
+			# calculation to add some mechanical drag
+			backwheel2.engine_force = acceleration * max_torque * (1 - rpm / max_rpm)
+		IDLE:
+			carCamera.current = false
+			
 
+# depreciated rock collision logic
 # COllisions 
-func _on_collision(area):
-	if area.name == "Rock":
-		speed /= 2
-		
-		impact()
-	if area.name == "Gems":
-		UpdateScore(50)
-		print_debug("Gem")
-		
-		# Destroy Gem Object
-	
+#func _on_collision(area):
+#	if area.name == "Rock":
+#		speed /= 2
+#		
+#		impact()
+#	if area.name == "Gems":
+#		UpdateScore(50)
+#		print_debug("Gem")
+#		
+#		# Destroy Gem Object
+
 
 # Triggers and Impact animation and Particle fx
 func impact():
@@ -131,3 +147,8 @@ func isFallingBelowMap() -> bool:
 # Update The Score When Colliding with Gem Object
 func UpdateScore(scoreToAdd : int) -> void:
 	print_debug(""% [scoreToAdd] )
+
+
+# testing player interract with vehicle body
+func _on_VehicleBody_body_entered(body):
+	print_debug("vehicle body debug: ", body, "/", body.name)

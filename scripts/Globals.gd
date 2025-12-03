@@ -92,8 +92,8 @@ var suds : int
 onready var user_data_dir : String =OS.get_user_data_dir()
 
 "safe Pointers to Global Singletons"
-onready var safe_GameHud = get_node("/root/GameHud/TouchInterface")
-onready var utils_singleton = get_node("/root/Utils")
+#onready var safe_GameHud = get_node("/root/GameHud/TouchInterface")
+#onready var utils_singleton = get_node("/root/Utils")
 
 "Screen Orientation"
 # for upscaling and downscaling UI
@@ -104,10 +104,10 @@ var center_of_viewport : Vector2
 
 
 
-"Node Pointer"
+#"Node Pointer"
 #var _smoke_fx_ 
 
-'Temporary variants'
+#'Temporary variants'
 #var temp
 
 
@@ -120,9 +120,9 @@ var center_of_viewport : Vector2
 # (1) Speeds up loading times by hiding it behind cinematics
 # Depreciated
 #var tile_map : TileMap
-var OverWorld #: PackedScene
+#var OverWorld #: PackedScene
 
-var player_cam : Camera setget set_PlayerCam, get_PlayerCam
+#var player_cam : Camera setget set_PlayerCam, get_PlayerCam
 
 #onready var nodes = [blood_fx,despawn_fx,self]
 func _ready():
@@ -143,14 +143,14 @@ func update_curr_scene() -> void:
 	curr_scene= get_tree().get_current_scene().get_name() 
 
 
-func _go_to_cinematics():
-	
-	return 0
+#func _go_to_cinematics():
+#	
+#	return 0
 
 
-"Player Cam Setters and Getters"
-func set_PlayerCam(camera_ref : Camera):
-	player_cam = camera_ref
+#"Player Cam Setters and Getters"
+#func set_PlayerCam(camera_ref : Camera):
+#	player_cam = camera_ref
 
-func get_PlayerCam() -> Camera:
-	return player_cam
+#func get_PlayerCam() -> Camera:
+#	return player_cam

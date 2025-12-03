@@ -25,11 +25,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0 )
 [node name="OmniLight" type="OmniLight" parent="Testing Scene"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -51, 9.57194, 0 )
 
-[node name="Dodge_Charger" parent="Testing Scene" instance=ExtResource( 1 )]
-transform = Transform( 0.158606, 0, -0.987342, 0, 1, 0, 0.987342, 0, 0.158606, -35.115, 0, -13.4196 )
-
 [node name="citymap" parent="Testing Scene" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -23.6863, 114.073 )
+
+[node name="VehicleBody" parent="Testing Scene" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -90.9416, 0.0626473, 20.9864 )
 
 [node name="GameHUD" parent="." instance=ExtResource( 4 )]
 
