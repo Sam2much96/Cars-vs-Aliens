@@ -8,8 +8,9 @@
 # (3) Players stats using GTA Miami vice style font
 # (4) Input handler
 # *************************************************
-# 
-# 
+#  to-do:
+#  (1) proper documentation
+#
 # 
 # *************************************************
 
@@ -27,7 +28,7 @@ extends Control
 
 
 var mobile_accelerating := false
-var mobile_braking := false
+var mobile_levitating := false
 
 var gyro_steer_strength := 0.0 # will be used to fake left/right
 
@@ -44,9 +45,9 @@ func _input(event):
 	# Example: If you use two fingers for brake:
 	if event is InputEventScreenDrag:
 		if event.get_relative().y > 50:
-			mobile_braking = true
+			mobile_levitating = true
 		else:
-			mobile_braking = false
+			mobile_levitating = false
 
 func _process(delta):
 	# Update gyroscope steering every frame
@@ -66,10 +67,10 @@ func _physics_process(delta):
 		Input.action_release("up")
 	
 	# Simulate DOWN input
-	if mobile_braking:
-		Input.action_press("down")
+	if mobile_levitating:
+		Input.action_press("jump")
 	else:
-		Input.action_release("down")
+		Input.action_release("jump")
 	
 	# Simulate LEFT/RIGHT based on gyroscope
 	if gyro_steer_strength < -0.1:

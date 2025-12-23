@@ -19,6 +19,12 @@
 # (6) implement car moving sfx from music singleton
 # (7) implement impact animation and physics
 # (8) export acceleration and physics data to the music singleton
+# (9) add texture images to model mesh like in the blender model
+	# to do:
+	# (1) connect vehicle  body activation with player 3d character
+	# (2) separate car into 3 states, driving, parked and ai state with 3d navigation mesh for them
+	# (3) create area 3d interraction for the player character nodes
+	# (4) set a pointer to trigger once the player is detected in the area of the vehicle body 3d
 # *************************************************
 
 
@@ -47,7 +53,7 @@ export (int) var max_torque : int = 200
 #enum {MOVE_FORWARD, REVERSE, STEER_LEFT, STEER_RIGHT}
 
 # state machine for the vehicle body object
-enum {DRIVING, IDLE}
+enum {DRIVING, IDLE, LEVITATE}
 
 var state = DRIVING
 
@@ -67,29 +73,32 @@ onready var carCamera : Camera = $Camera
 
 # car navigation
 var acceleration : int
-#var steering : float
+
 
 func _ready():
 	
+	# testing car levitate
 	
 	pass
 
 
-
-
-
+func _input(event):
+	if event.is_action_pressed("jump") && state == DRIVING:
+		state = LEVITATE
+		return
+	if event.is_action_pressed("jump") && state == LEVITATE:
+		state = DRIVING
+		return
 
 func _physics_process(delta):
-	
-	# to do:
-	# (1) connect vehicle  body activation with player 3d character
-	# (2) separate car into 3 states, driving, parked and ai state with 3d navigation mesh for them
-	# (3) create area 3d interraction for the player character nodes
-	# (4) set a pointer to trigger once the player is detected in the area of the vehicle body 3d
-	
+	# car simple state machine
 	
 	match state:
 		DRIVING:
+			# reset gravity
+			if gravity_scale == 0: gravity_scale = 1
+			
+			
 			# make the car camera the current render
 			carCamera.current = true
 			# Left and Right Steering
@@ -116,19 +125,30 @@ func _physics_process(delta):
 		IDLE:
 			carCamera.current = false
 			
+		LEVITATE:
+			
+			# to do:
+			# (1) implement car turns while levitating
+			# (2) implement gyroscope controls while levitating
+			# (3) map car levitate controls to touch screen button
+			gravity_scale = 0
+			  # Left/right input
+			var horizontal_input = Input.get_axis("left", "right")  # -1 = left, 1 = right
+			var vertical_input = Input.get_axis("up", "down")       # optional forward/back
 
-# depreciated rock collision logic
-# COllisions 
-#func _on_collision(area):
-#	if area.name == "Rock":
-#		speed /= 2
-#		
-#		impact()
-#	if area.name == "Gems":
-#		UpdateScore(50)
-#		print_debug("Gem")
-#		
-#		# Destroy Gem Object
+			# Lift slightly to prevent falling
+			var hover_force = Vector3.UP * 20.0
+			add_central_force(hover_force)
+
+			# Move left/right
+			#var lateral_force = transform.basis.x * horizontal_input * 50.0  # tweak strength
+			#add_central_force(lateral_force)
+
+			# Optional: forward/backward
+			var forward_force = transform.basis.z * -vertical_input * 50.0
+			add_central_force(forward_force)
+
+
 
 
 # Triggers and Impact animation and Particle fx

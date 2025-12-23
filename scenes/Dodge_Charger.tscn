@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://scripts/car.gd" type="Script" id=1]
 [ext_resource path="res://Material.material" type="Material" id=2]
@@ -101,6 +101,37 @@ surfaces/6 = {
 "vertex_count": 5696
 }
 
+[sub_resource type="SpatialMaterial" id=18]
+albedo_color = Color( 0, 0, 0, 1 )
+metallic = 0.52
+roughness = 0.35
+
+[sub_resource type="SpatialMaterial" id=19]
+metallic = 0.4
+metallic_specular = 0.74
+roughness = 0.0
+
+[sub_resource type="SpatialMaterial" id=20]
+albedo_color = Color( 0.894118, 0.894118, 0.894118, 1 )
+metallic = 0.8
+roughness = 0.09
+
+[sub_resource type="SpatialMaterial" id=21]
+
+[sub_resource type="SpatialMaterial" id=22]
+
+[sub_resource type="SpatialMaterial" id=23]
+metallic = 1.0
+roughness = 0.24
+
+[sub_resource type="SpatialMaterial" id=24]
+albedo_color = Color( 0.682353, 0.164706, 0.164706, 1 )
+emission_enabled = true
+emission = Color( 0.87451, 0.337255, 0.337255, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
 [sub_resource type="ArrayMesh" id=2]
 resource_name = "Dodge_Charger_Plano005"
 surfaces/0 = {
@@ -132,11 +163,8 @@ surfaces/0 = {
 }
 
 [sub_resource type="SpatialMaterial" id=17]
-albedo_color = Color( 0.87451, 0.87451, 0.87451, 1 )
+albedo_color = Color( 0.721569, 0.721569, 0.721569, 0.615686 )
 metallic_specular = 1.0
-refraction_enabled = true
-refraction_scale = 0.05
-refraction_texture_channel = 0
 
 [sub_resource type="ArrayMesh" id=4]
 resource_name = "Dodge_Charger_Plano010"
@@ -239,6 +267,9 @@ surfaces/0 = {
 "skeleton_aabb": [  ],
 "vertex_count": 1310
 }
+
+[sub_resource type="SpatialMaterial" id=25]
+albedo_color = Color( 0.145098, 0.145098, 0.145098, 1 )
 
 [sub_resource type="ArrayMesh" id=10]
 resource_name = "Dodge_Charger_Plano008"
@@ -379,6 +410,13 @@ current = true
 [node name="Carroceria001" type="MeshInstance" parent="Carroceria"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.613466, 0, 0.985222, 0.0135174 )
 mesh = SubResource( 1 )
+material/0 = SubResource( 18 )
+material/1 = SubResource( 19 )
+material/2 = SubResource( 20 )
+material/3 = SubResource( 21 )
+material/4 = SubResource( 22 )
+material/5 = SubResource( 23 )
+material/6 = SubResource( 24 )
 
 [node name="Círculo Bézier002" type="Spatial" parent="Carroceria/Carroceria001"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.63008, 1.31676, 0.314035, -6.82728 )
@@ -426,6 +464,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.53258, 0.777878, 1.68744 )
 [node name="Puertas001" type="MeshInstance" parent="Carroceria/Puerta_D"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.613466, -0.164891, 0.00762642, -0.0310402 )
 mesh = SubResource( 9 )
+material/0 = SubResource( 25 )
 
 [node name="Vidris001" type="MeshInstance" parent="Carroceria/Puerta_D/Puertas001"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.426494, 0.726918, -2.25357 )
@@ -491,9 +530,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020092, 0.0425826, -0.061682
 [node name="Círculo011" type="MeshInstance" parent="backwheel1/Rueda_T_I"]
 transform = Transform( -1.82166e-07, 1.63624, -2.27708e-07, 4.55416e-08, -1.95055e-07, -1.52812, -1.52812, -2.43819e-07, 0, -0.124907, -0.00104392, 0.00070858 )
 mesh = SubResource( 13 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../..")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.40323e-06, -0.0626473, 0.00821495 )
